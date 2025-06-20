@@ -18,7 +18,7 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { Avatar, AvatarFallback } from "../ui/avatar";
-import { logoutUser, resetTokenAndCredential } from "@/store/auth-slice";
+import { logoutUser, resetTokenAndCredentials } from "@/store/auth-slice";
 import UserCartWrapper from "./cart-wrapper";
 import { useEffect, useState } from "react";
 import { fetchCartItems } from "@/store/shop/cart-slice";
@@ -73,9 +73,9 @@ function HeaderRightContent() {
 
   function handleLogout() {
     // dispatch(logoutUser());
-    dispatch(resetTokenAndCredential());
+    dispatch(resetTokenAndCredentials());
     sessionStorage.clear();
-    navigate('/auth/login');
+    navigate("/auth/login");
   }
 
   useEffect(() => {
@@ -143,7 +143,7 @@ function ShoppingHeader() {
       <div className="flex h-16 items-center justify-between px-4 md:px-6">
         <Link to="/shop/home" className="flex items-center gap-2">
           <HousePlug className="h-6 w-6" />
-          <span className="font-bold">Style-XR</span>
+          <span className="font-bold">Ecommerce</span>
         </Link>
         <Sheet>
           <SheetTrigger asChild>

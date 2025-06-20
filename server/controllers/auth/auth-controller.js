@@ -78,18 +78,19 @@ const loginUser = async (req, res) => {
     //     userName: checkUser.userName,
     //   },
     // });
-    res.json({
-      sucess : true,
-      message : 'Logged in sucessfully',
+
+    res.status(200).json({
+      success: true,
+      message: "Logged in successfully",
       token,
-        user: {
+      user: {
         email: checkUser.email,
         role: checkUser.role,
         id: checkUser._id,
         userName: checkUser.userName,
       },
     });
-} catch (e) {
+  } catch (e) {
     console.log(e);
     res.status(500).json({
       success: false,
@@ -128,10 +129,9 @@ const logoutUser = (req, res) => {
 //   }
 // };
 
-
 const authMiddleware = async (req, res, next) => {
-  const authHeader = req.headers['authorization '];
-  const token = authHeader && authHeader.split(' ') [1]
+  const authHeader = req.headers["authorization"];
+  const token = authHeader && authHeader.split(" ")[1];
   if (!token)
     return res.status(401).json({
       success: false,

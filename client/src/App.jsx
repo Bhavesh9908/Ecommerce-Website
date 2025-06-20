@@ -23,9 +23,6 @@ import PaypalReturnPage from "./pages/shopping-view/paypal-return";
 import PaymentSuccessPage from "./pages/shopping-view/payment-success";
 import SearchProducts from "./pages/shopping-view/search";
 
-// 👇 Chatbot import
-import Chatbot from "./components/ui/Chatbot";
-
 function App() {
   const { user, isAuthenticated, isLoading } = useSelector(
     (state) => state.auth
@@ -33,7 +30,7 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const token = JSON.parse(sessionStorage.getItem(token))
+    const token = JSON.parse(sessionStorage.getItem("token"));
     dispatch(checkAuth(token));
   }, [dispatch]);
 
@@ -47,7 +44,10 @@ function App() {
         <Route
           path="/"
           element={
-            <CheckAuth isAuthenticated={isAuthenticated} user={user} />
+            <CheckAuth
+              isAuthenticated={isAuthenticated}
+              user={user}
+            ></CheckAuth>
           }
         />
         <Route
@@ -93,9 +93,6 @@ function App() {
         <Route path="/unauth-page" element={<UnauthPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-
-      {/* 👇 Global Chatbot visible on all pages */}
-      <Chatbot />
     </div>
   );
 }
